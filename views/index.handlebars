@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col s5 center-align">
+        <ul>
+            {{#each burger}}
+                {{#unless this.devoured}}
+                    <div class="card red">
+                        <p>
+                            {{this.id}}. {{this.burger_name}}
+
+                            <form action="update/{{this.id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="devoured" value="1">
+                            <button type="submit" class="btn btn-danger">CONSUME</button>
+                            </form>
+                        </p>
+                    </div>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="col s5 center-align">
+        <ul>
+            {{#each burger}}
+            {{#if this.devoured}}
+            <div class="card red lighten-3">
+                <p class="black-text">
+                    {{this.id}}. {{this.burger_name}}
+                    <form action="delete/{{this.id}}?_method=DELETE" method="POST">
+                                                <button type="submit" class="btn btn-danger">Get Rid of It</button>
+
+                    </form>
+                </p>
+            </div>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
