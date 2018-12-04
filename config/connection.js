@@ -3,6 +3,7 @@ var mysql = require("mysql");
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
   } else {
+    //This in theory would connect to the mySQL database.
     connection = mysql.createConnection({
       port: 3306,
       host: "localhost",
@@ -19,5 +20,5 @@ connection.connect(function(err) {
   }
   console.log("connected as id " + connection.threadId);
 });
-
+//This defines what term will be used to export this page.
 module.exports = connection;

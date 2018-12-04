@@ -1,21 +1,24 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    selectAll: function(callback){
+    selectAll: function(cb){
         var queryString = "SELECT * FROM burgers";
+        console.log('inside orm')
+        console.log(cb)
         connection.query(queryString, function(err, result){
            if (err) throw (err);
-           callback(result); 
+           cb(result); 
         }
         );
     },
 
-    insertOne: function(burger, callback){
+    insertOne: function(burger, cb){
         var queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
         connection.query(queryString, [burger], function(err, result){
+            console.log("inside 'InsertOne'")
             if (err) throw (err);
             console.log(result); 
-            callback(result);
+            cb(result);
          }
          
         );
@@ -23,14 +26,23 @@ var orm = {
 
 
 
-    updateOne: function(id, callback){
+    updateOne: function(id, cb){
         var queryString = "UPDATE burgers SET devoured = true WHERE id = ?";
         connection.query(queryString, [id],  function(err, result){
             if (err) throw (err);
             console.log(result) 
-            callback(result);
+            cb(result);
          }
          );
+    },
+
+    deleteOne: function(id, cb){
+        var queryString = "DELETE FROM burgers WHERE id = ?";
+        connection.query(queryString, [id], function(err, result){
+            if (err) throw (err);
+            console.log(result);
+            cb(result);
+        })
     }
 };
 

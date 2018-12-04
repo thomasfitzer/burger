@@ -2,13 +2,13 @@ var orm = require("../config/orm.js");
 
 var burger = {
     selectAll: function(cb){
-        orm.selectAll('burgers', function(res){
+        orm.selectAll(function(res){
             cb(res);
         });
     },
 
     getMenu: function(cb){
-        orm.selectAll('menu', function(res){
+        orm.selectAll(function(res){
             cb(res);
         });
     },
@@ -18,12 +18,14 @@ var burger = {
         });
     },
     updateOne: function(colVal, conditionVal, cb){
-        orm.updateOne('burgers', 'devoured', colVal, 'id', conditionVal, function(res){
+        console.log(colVal);
+        console.log(conditionVal);
+        orm.updateOne(conditionVal, function(res){
             cb(res);
         });
     },
     deleteOne: function(conditionVal, cb){
-        orm.deleteOne('burgers', 'id', conditionVal, function(res){
+        orm.deleteOne(conditionVal, function(res){
             cb(res);
         });
     }
